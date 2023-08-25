@@ -1,8 +1,11 @@
+
+
 "use strict";
 
 const { NotFoundError, BadRequestError } = require("../expressError");
 const db = require("../db.js");
 const Job = require("./job.js");
+
 const {
   commonBeforeAll,
   commonBeforeEach,
@@ -16,8 +19,8 @@ beforeEach(commonBeforeEach);
 afterEach(commonAfterEach);
 afterAll(commonAfterAll);
 
-/************************************** create */
 
+// *********************** CREATE
 describe("create", function () {
   let newJob = {
     companyHandle: "c1",
@@ -35,8 +38,8 @@ describe("create", function () {
   });
 });
 
-/************************************** findAll */
 
+// *********************** FINDALL
 describe("findAll", function () {
   test("works: no filter", async function () {
     let jobs = await Job.findAll();
@@ -141,8 +144,8 @@ describe("findAll", function () {
   });
 });
 
-/************************************** get */
 
+// *********************** GET
 describe("get", function () {
   test("works", async function () {
     let job = await Job.get(testJobIds[0]);
@@ -171,8 +174,8 @@ describe("get", function () {
   });
 });
 
-/************************************** update */
 
+// *********************** UPDATE
 describe("update", function () {
   let updateData = {
     title: "New",
@@ -209,8 +212,8 @@ describe("update", function () {
   });
 });
 
-/************************************** remove */
 
+// *********************** REMOVE
 describe("remove", function () {
   test("works", async function () {
     await Job.remove(testJobIds[0]);

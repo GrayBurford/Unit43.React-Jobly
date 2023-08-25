@@ -1,3 +1,5 @@
+
+
 "use strict";
 
 const request = require("supertest");
@@ -22,8 +24,8 @@ beforeEach(commonBeforeEach);
 afterEach(commonAfterEach);
 afterAll(commonAfterAll);
 
-/************************************** POST /users */
 
+// **************************** POST /users
 describe("POST /users", function () {
   test("works for admins: create non-admin", async function () {
     const resp = await request(app)
@@ -128,8 +130,8 @@ describe("POST /users", function () {
   });
 });
 
-/************************************** GET /users */
 
+// ********************************* GET /users
 describe("GET /users", function () {
   test("works for admins", async function () {
     const resp = await request(app)
@@ -187,8 +189,8 @@ describe("GET /users", function () {
   });
 });
 
-/************************************** GET /users/:username */
 
+// ************************************* GET /users/:username
 describe("GET /users/:username", function () {
   test("works for admin", async function () {
     const resp = await request(app)
@@ -243,8 +245,8 @@ describe("GET /users/:username", function () {
   });
 });
 
-/************************************** PATCH /users/:username */
 
+// ********************************* PATCH /users/:username
 describe("PATCH /users/:username", () => {
   test("works for admins", async function () {
     const resp = await request(app)
@@ -342,8 +344,8 @@ describe("PATCH /users/:username", () => {
   });
 });
 
-/************************************** DELETE /users/:username */
 
+// ************************************ DELETE /users/:username
 describe("DELETE /users/:username", function () {
   test("works for admin", async function () {
     const resp = await request(app)
@@ -380,8 +382,8 @@ describe("DELETE /users/:username", function () {
   });
 });
 
-/************************************** POST /users/:username/jobs/:id */
 
+// ********************************* POST /users/:username/jobs/:id
 describe("POST /users/:username/jobs/:id", function () {
   test("works for admin", async function () {
     const resp = await request(app)

@@ -1,3 +1,5 @@
+
+
 "use strict";
 
 const request = require("supertest");
@@ -19,8 +21,8 @@ beforeEach(commonBeforeEach);
 afterEach(commonAfterEach);
 afterAll(commonAfterAll);
 
-/************************************** POST /companies */
 
+// ***************************** POST /companies
 describe("POST /companies", function () {
   const newCompany = {
     handle: "new",
@@ -72,8 +74,8 @@ describe("POST /companies", function () {
   });
 });
 
-/************************************** GET /companies */
 
+// *********************************** GET /companies
 describe("GET /companies", function () {
   test("ok for anon", async function () {
     const resp = await request(app).get("/companies");
@@ -147,8 +149,8 @@ describe("GET /companies", function () {
   });
 });
 
-/************************************** GET /companies/:handle */
 
+// ********************************* GET /companies/:handle
 describe("GET /companies/:handle", function () {
   test("works for anon", async function () {
     const resp = await request(app).get(`/companies/c1`);
@@ -188,8 +190,8 @@ describe("GET /companies/:handle", function () {
   });
 });
 
-/************************************** PATCH /companies/:handle */
 
+// ******************************* PATCH /companies/:handle
 describe("PATCH /companies/:handle", function () {
   test("works for admin", async function () {
     const resp = await request(app)
@@ -259,8 +261,8 @@ describe("PATCH /companies/:handle", function () {
   });
 });
 
-/************************************** DELETE /companies/:handle */
 
+// ******************************* DELETE /companies/:handle
 describe("DELETE /companies/:handle", function () {
   test("works for admin", async function () {
     const resp = await request(app)

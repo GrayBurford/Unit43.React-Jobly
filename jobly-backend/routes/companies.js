@@ -1,7 +1,9 @@
+
+
 "use strict";
 
-/** Routes for companies. */
 
+// Routes for Companies
 const jsonschema = require("jsonschema");
 const express = require("express");
 
@@ -16,15 +18,10 @@ const companySearchSchema = require("../schemas/companySearch.json");
 const router = new express.Router();
 
 
-/** POST / { company } =>  { company }
- *
- * company should be { handle, name, description, numEmployees, logoUrl }
- *
- * Returns { handle, name, description, numEmployees, logoUrl }
- *
- * Authorization required: admin
- */
-
+// POST / { company } => { company }
+// company should be { handle, name, description, numEmployees, logoUrl }
+// Returns { handle, name, description, numEmployees, logoUrl }
+// Authorization required: ADMIN
 router.post("/", ensureAdmin, async function (req, res, next) {
   try {
     const validator = jsonschema.validate(req.body, companyNewSchema);
@@ -40,17 +37,13 @@ router.post("/", ensureAdmin, async function (req, res, next) {
   }
 });
 
-/** GET /  =>
- *   { companies: [ { handle, name, description, numEmployees, logoUrl }, ...] }
- *
- * Can filter on provided search filters:
- * - minEmployees
- * - maxEmployees
- * - nameLike (will find case-insensitive, partial matches)
- *
- * Authorization required: none
- */
 
+// GET / => { companies: [ { handle, name, description, numEmployees, logoUrl }, ...] }
+// Can filter on provided search filters:
+// - minEmployees
+// - maxEmployees
+// - nameLike (will find case-insensitive, partial matches)
+// Authorization required: NONE
 router.get("/", async function (req, res, next) {
   const q = req.query;
   // arrive as strings from querystring, but we want as ints
@@ -71,14 +64,11 @@ router.get("/", async function (req, res, next) {
   }
 });
 
-/** GET /[handle]  =>  { company }
- *
- *  Company is { handle, name, description, numEmployees, logoUrl, jobs }
- *   where jobs is [{ id, title, salary, equity }, ...]
- *
- * Authorization required: none
- */
 
+// GET /[handle] => { company }
+// Company is { handle, name, description, numEmployees, logoUrl, jobs }
+// where job is [{ id, title, salary, equity }, ... ]
+// Authorization required: NONE
 router.get("/:handle", async function (req, res, next) {
   try {
     const company = await Company.get(req.params.handle);
@@ -88,17 +78,12 @@ router.get("/:handle", async function (req, res, next) {
   }
 });
 
-/** PATCH /[handle] { fld1, fld2, ... } => { company }
- *
- * Patches company data.
- *
- * fields can be: { name, description, numEmployees, logo_url }
- *
- * Returns { handle, name, description, numEmployees, logo_url }
- *
- * Authorization required: admin
- */
 
+// PATCH /[handle] { fld1, fld2, ... } => { company }
+// Patches copmany data
+// fields can be: { name, description, numEmployees, logo_url }
+// Returns { handle, name, description, numEmployees, logo_url }
+// Authorization required: ADMIN
 router.patch("/:handle", ensureAdmin, async function (req, res, next) {
   try {
     const validator = jsonschema.validate(req.body, companyUpdateSchema);
@@ -114,11 +99,9 @@ router.patch("/:handle", ensureAdmin, async function (req, res, next) {
   }
 });
 
-/** DELETE /[handle]  =>  { deleted: handle }
- *
- * Authorization: admin
- */
 
+// DELETE /[handle] => { deleted : handle }
+// Authorization required: ADMIN
 router.delete("/:handle", ensureAdmin, async function (req, res, next) {
   try {
     await Company.remove(req.params.handle);

@@ -1,8 +1,11 @@
+
+
 "use strict";
 
 const db = require("../db");
 const bcrypt = require("bcrypt");
 const { sqlForPartialUpdate } = require("../helpers/sql");
+
 const {
   NotFoundError,
   BadRequestError,
@@ -11,16 +14,12 @@ const {
 
 const { BCRYPT_WORK_FACTOR } = require("../config.js");
 
-/** Related functions for users. */
 
+// Functions for User Model
 class User {
-  /** authenticate user with username, password.
-   *
-   * Returns { username, first_name, last_name, email, is_admin }
-   *
-   * Throws UnauthorizedError is user not found or wrong password.
-   **/
-
+  // Authenticate user with username, password
+  // Returns { username, first_name, last_name, email, is_admin }
+  // Throw UnauthorizedError if user not found or enters wrong password
   static async authenticate(username, password) {
     // try to find the user first
     const result = await db.query(
@@ -49,15 +48,18 @@ class User {
     throw new UnauthorizedError("Invalid username/password");
   }
 
-  /** Register user with data.
-   *
-   * Returns { username, firstName, lastName, email, isAdmin }
-   *
-   * Throws BadRequestError on duplicates.
-   **/
 
-  static async register(
-      { username, password, firstName, lastName, email, isAdmin }) {
+  // Register user with data
+  // Returns { username, firstName, lastName, email, isAdmin }
+  // Throws BadRequestError on duplicates
+  static async register({
+      username, 
+      password, 
+      firstName, 
+      lastName, 
+      email, 
+      isAdmin
+    }) {
     const duplicateCheck = await db.query(
           `SELECT username
            FROM users
@@ -66,7 +68,7 @@ class User {
     );
 
     if (duplicateCheck.rows[0]) {
-      throw new BadRequestError(`Duplicate username: ${username}`);
+      throw new BadRequestError(`Duplicate username: ${username}. Please choose another.`);
     }
 
     const hashedPassword = await bcrypt.hash(password, BCRYPT_WORK_FACTOR);
@@ -96,11 +98,9 @@ class User {
     return user;
   }
 
-  /** Find all users.
-   *
-   * Returns [{ username, first_name, last_name, email, is_admin }, ...]
-   **/
 
+  // Find all users
+  // Returns [{ username, first_name, last_name, email, is_admin }, ... ]
   static async findAll() {
     const result = await db.query(
           `SELECT username,
@@ -115,14 +115,10 @@ class User {
     return result.rows;
   }
 
-  /** Given a username, return data about user.
-   *
-   * Returns { username, first_name, last_name, is_admin, jobs }
-   *   where jobs is { id, title, company_handle, company_name, state }
-   *
-   * Throws NotFoundError if user not found.
-   **/
 
+  // Given a username, return data about user
+  // Returns { username, first_name, last_name, is_admin, jobs }
+  // Throw NotFoundError if user not found
   static async get(username) {
     const userRes = await db.query(
           `SELECT username,
@@ -148,23 +144,13 @@ class User {
     return user;
   }
 
-  /** Update user data with `data`.
-   *
-   * This is a "partial update" --- it's fine if data doesn't contain
-   * all the fields; this only changes provided ones.
-   *
-   * Data can include:
-   *   { firstName, lastName, password, email, isAdmin }
-   *
-   * Returns { username, firstName, lastName, email, isAdmin }
-   *
-   * Throws NotFoundError if not found.
-   *
-   * WARNING: this function can set a new password or make a user an admin.
-   * Callers of this function must be certain they have validated inputs to this
-   * or a serious security risks are opened.
-   */
 
+  // Update user data with `data`
+  // This is a 'partial update' --- fine if data does not contain all fields; this only changes provided fields
+  // Data can include: { firstName, lastName, password, email, isAdmin }
+  // Returns { username, firstName, lastName, email, isAdmin }
+  // Throw NotFoundError if not found
+  // ***WARNING***: this function can set a new password or make a user an admin. Callers of this function must be certain they have validated inputs to this or a serious security risks are opened.
   static async update(username, data) {
     if (data.password) {
       data.password = await bcrypt.hash(data.password, BCRYPT_WORK_FACTOR);
@@ -196,8 +182,8 @@ class User {
     return user;
   }
 
-  /** Delete given user from database; returns undefined. */
 
+  // Delete given user from database; returns undefined
   static async remove(username) {
     let result = await db.query(
           `DELETE
@@ -211,12 +197,10 @@ class User {
     if (!user) throw new NotFoundError(`No user: ${username}`);
   }
 
-  /** Apply for job: update db, returns undefined.
-   *
-   * - username: username applying for job
-   * - jobId: job id
-   **/
 
+  // Apply for job; update db, returns undefined
+  // - username: username applying for job
+  // - jobId: job id
   static async applyToJob(username, jobId) {
     const preCheck = await db.query(
           `SELECT id

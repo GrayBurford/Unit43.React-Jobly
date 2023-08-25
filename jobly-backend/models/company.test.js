@@ -1,3 +1,5 @@
+
+
 "use strict";
 
 const db = require("../db.js");
@@ -16,8 +18,8 @@ beforeEach(commonBeforeEach);
 afterEach(commonAfterEach);
 afterAll(commonAfterAll);
 
-/************************************** create */
 
+// ************************************ CREATE
 describe("create", function () {
   const newCompany = {
     handle: "new",
@@ -57,8 +59,8 @@ describe("create", function () {
   });
 });
 
-/************************************** findAll */
 
+// ************************************ FINDALL
 describe("findAll", function () {
   test("works: all", async function () {
     let companies = await Company.findAll();
@@ -169,8 +171,8 @@ describe("findAll", function () {
   });
 });
 
-/************************************** get */
 
+// ************************************ GET
 describe("get", function () {
   test("works", async function () {
     let company = await Company.get("c1");
@@ -199,8 +201,8 @@ describe("get", function () {
   });
 });
 
-/************************************** update */
 
+// ************************************ UPDATE
 describe("update", function () {
   const updateData = {
     name: "New",
@@ -275,8 +277,8 @@ describe("update", function () {
   });
 });
 
-/************************************** remove */
 
+// ************************************ REMOVE
 describe("remove", function () {
   test("works", async function () {
     await Company.remove("c1");

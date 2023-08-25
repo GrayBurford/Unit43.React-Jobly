@@ -14,6 +14,7 @@ const usersRoutes = require("./routes/users");
 const jobsRoutes = require("./routes/jobs");
 
 const morgan = require("morgan");
+const { DatabaseError } = require("pg");
 
 const app = express();
 
@@ -28,12 +29,13 @@ app.use("/users", usersRoutes);
 app.use("/jobs", jobsRoutes);
 
 
-/** Handle 404 errors -- this matches everything */
+// Handle 404 Errors -- this matches everything
 app.use(function (req, res, next) {
   return next(new NotFoundError());
 });
 
-/** Generic error handler; anything unhandled goes here. */
+
+// Generic error handler; anything unhandled goes here
 app.use(function (err, req, res, next) {
   if (process.env.NODE_ENV !== "test") console.error(err.stack);
   const status = err.status || 500;
@@ -43,5 +45,6 @@ app.use(function (err, req, res, next) {
     error: { message, status },
   });
 });
+
 
 module.exports = app;

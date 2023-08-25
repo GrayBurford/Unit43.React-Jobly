@@ -1,20 +1,16 @@
+
+
 "use strict";
 
-/** Convenience middleware to handle common auth cases in routes. */
-
+// Convenience middleware to handle common auth cases in routes
 const jwt = require("jsonwebtoken");
 const { SECRET_KEY } = require("../config");
 const { UnauthorizedError } = require("../expressError");
 
 
-/** Middleware: Authenticate user.
- *
- * If a token was provided, verify it, and, if valid, store the token payload
- * on res.locals (this will include the username and isAdmin field.)
- *
- * It's not an error if no token was provided or if the token is not valid.
- */
-
+// Middleware: Authenticate user
+// If token was provided, verify it, and, if valid, store the token payload on res.locals (this will include the username and isAdmin field)
+// NOT an error if no token was provided or if token is not valid
 function authenticateJWT(req, res, next) {
   try {
     const authHeader = req.headers && req.headers.authorization;
@@ -28,11 +24,9 @@ function authenticateJWT(req, res, next) {
   }
 }
 
-/** Middleware to use when they must be logged in.
- *
- * If not, raises Unauthorized.
- */
 
+// Middleware to use when user must be logged in
+// If not logged in, raises Unauthorized
 function ensureLoggedIn(req, res, next) {
   try {
     if (!res.locals.user) throw new UnauthorizedError();
@@ -43,11 +37,8 @@ function ensureLoggedIn(req, res, next) {
 }
 
 
-/** Middleware to use when they be logged in as an admin user.
- *
- *  If not, raises Unauthorized.
- */
-
+// Middleware to use when they must be logged in as an admin user
+// If not admin, raises Unauthorized
 function ensureAdmin(req, res, next) {
   try {
     if (!res.locals.user || !res.locals.user.isAdmin) {
@@ -59,12 +50,9 @@ function ensureAdmin(req, res, next) {
   }
 }
 
-/** Middleware to use when they must provide a valid token & be user matching
- *  username provided as route param.
- *
- *  If not, raises Unauthorized.
- */
 
+// Middleware to use when they must provide valid token & be user matching username provided as route param
+// If not, raises Unauthorized
 function ensureCorrectUserOrAdmin(req, res, next) {
   try {
     const user = res.locals.user;

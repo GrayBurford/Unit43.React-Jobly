@@ -1,3 +1,5 @@
+
+
 "use strict";
 
 const request = require("supertest");
@@ -19,8 +21,8 @@ beforeEach(commonBeforeEach);
 afterEach(commonAfterEach);
 afterAll(commonAfterAll);
 
-/************************************** POST /jobs */
 
+// POST *************************** /jobs
 describe("POST /jobs", function () {
   test("ok for admin", async function () {
     const resp = await request(app)
@@ -82,8 +84,8 @@ describe("POST /jobs", function () {
 
 });
 
-/************************************** GET /jobs */
 
+// ******************************** GET /jobs
 describe("GET /jobs", function () {
   test("ok for anon", async function () {
     const resp = await request(app).get(`/jobs`);
@@ -172,8 +174,8 @@ describe("GET /jobs", function () {
   });
 });
 
-/************************************** GET /jobs/:id */
 
+// ******************************** GET /jobs/:id
 describe("GET /jobs/:id", function () {
   test("works for anon", async function () {
     const resp = await request(app).get(`/jobs/${testJobIds[0]}`);
@@ -200,8 +202,8 @@ describe("GET /jobs/:id", function () {
   });
 });
 
-/************************************** PATCH /jobs/:id */
 
+// ***************************** PATCH /jobs/:id
 describe("PATCH /jobs/:id", function () {
   test("works for admin", async function () {
     const resp = await request(app)
@@ -262,8 +264,8 @@ describe("PATCH /jobs/:id", function () {
   });
 });
 
-/************************************** DELETE /jobs/:id */
 
+// ******************************** DELETE /jobs/:id
 describe("DELETE /jobs/:id", function () {
   test("works for admin", async function () {
     const resp = await request(app)

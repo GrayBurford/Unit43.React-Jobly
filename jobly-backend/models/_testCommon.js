@@ -1,3 +1,5 @@
+
+
 const bcrypt = require("bcrypt");
 
 const db = require("../db.js");
@@ -46,13 +48,16 @@ async function commonBeforeAll() {
       [testJobIds[0]]);
 }
 
+
 async function commonBeforeEach() {
   await db.query("BEGIN");
 }
 
+
 async function commonAfterEach() {
   await db.query("ROLLBACK");
 }
+
 
 async function commonAfterAll() {
   await db.end();

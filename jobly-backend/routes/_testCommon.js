@@ -1,3 +1,5 @@
+
+
 "use strict";
 
 const db = require("../db.js");
@@ -74,13 +76,16 @@ async function commonBeforeAll() {
   await User.applyToJob("u1", testJobIds[0]);
 }
 
+
 async function commonBeforeEach() {
   await db.query("BEGIN");
 }
 
+
 async function commonAfterEach() {
   await db.query("ROLLBACK");
 }
+
 
 async function commonAfterAll() {
   await db.end();
