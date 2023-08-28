@@ -1,0 +1,53 @@
+
+.CompanyDetail {
+    border: 1px solid black;
+    background-color: lightcoral;
+    justify-content: center;
+}
+
+.CompanyDetail-Card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    border: 2px lightgray solid;
+    border-radius: 1rem;
+    padding: 20px;
+    margin: 2rem 25% 2rem 25%;
+    background-color: lightblue;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.CompanyDetail-Img {
+    width: 300px;
+    height: 120px;
+    border: 2px black solid;
+}
+
+.CompanyDetail-JobCard {
+    display: inline-block;
+    justify-content: center;
+    width: 50%;    
+}
+
+.CompanyDetail-Job {
+    margin: 10px;
+    padding: 20px;
+    text-align: left;
+    border: 1px black solid;
+    border-radius: 10px;
+    background-color: lightblue;
+    width: 100%;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.CompanyDetail-Button {
+    width: 100px;
+    margin-left: 5px;
+    border: 2px black solid;
+    border-radius: 5px;
+    padding: 3px;
+    margin-top: 5px;
+    background-color: lightgreen;
+}

@@ -1,11 +1,12 @@
 
-nav {
+.NavBar {
     display: flex;
     align-items: center;
     justify-content: flex-start;
     border-bottom: 2px solid black;
     padding: 3px;
     background-color: darkgray;
+    /* margin-bottom: -21px; */
 }
 
 ul {
@@ -16,19 +17,19 @@ ul {
 
 li {
     list-style: none;
-    /* text-decoration: none; */
     margin-left: 20px;
 }
 
 .NavBar-Link {
     font-size: 1.2rem;
     text-decoration: none;
+    font-weight: bold;
     color: #f36;
     cursor: pointer;
 }
 
 #NavBar-Home {
-    font-size: 2rem;
+    font-size: 2.5rem;
     color: dodgerblue;
     margin-left: 20px;
     text-decoration: none;
@@ -39,7 +40,7 @@ a:hover {
 }
 
 .NavBar-Link.active {
-    font-weight: bold;
     text-decoration: overline;
+    color: dodgerblue;
 }
 

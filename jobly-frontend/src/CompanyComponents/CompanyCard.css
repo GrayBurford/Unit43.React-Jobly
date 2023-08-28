@@ -1,0 +1,39 @@
+
+
+.CompanyCard {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    border: 2px lightgray solid;
+    border-radius: 1rem;
+    padding: 20px;
+    margin: 2rem 25% 2rem 25%;
+    background-color: lightblue;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.CompanyCard a {
+    text-decoration: none;
+    font-size: 2rem;
+    color: black;
+}
+
+.CompanyCard-Img {
+    height : 5rem;
+    border: 2px black solid;
+    border-radius: 10px;
+}
+
+.CompanyCard-Button {
+    cursor: pointer;
+    background-color: lightgreen;
+    color: black;
+    font-weight: 600;
+    font-size: 16px;
+    width: 200px;
+    height: 40px;
+    border: 2px solid black;
+    border-radius: 10px;
+
+}

@@ -5,7 +5,7 @@ import './Home.css';
 function Home () {
     return (
         <div className="Home">
-            All Jobs In One Place
+            <span>All Jobs In One Place</span>
         </div>
     )
 }

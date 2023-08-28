@@ -3,9 +3,9 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import Home from './Home';
 import SignupForm from './SignupForm';
 import LoginForm from './LoginForm';
-import CompanyList from './CompanyList';
-import CompanyDetail from './CompanyDetail';
-import JobList from './JobList';
+import CompanyList from './CompanyComponents/CompanyList';
+import CompanyDetail from './CompanyComponents/CompanyDetail';
+import JobList from './JobComponents/JobList';
 import Profile from './Profile';
 
 
@@ -30,7 +30,7 @@ function Routes () {
                 <CompanyList />
             </Route>
 
-            <Route exact path="/companies/:company">
+            <Route exact path="/companies/:handle">
                 <CompanyDetail />
             </Route>
 

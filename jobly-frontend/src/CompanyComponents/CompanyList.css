@@ -1,0 +1,45 @@
+
+.CompanyList {
+    background-color: lightcoral;
+    justify-content: center;    
+    text-align: center;    
+}
+
+h1 {
+    color: black;
+    font-size: 48px;
+}
+
+.CompanyList-Form {
+    border: 2px solid black;
+    border-radius: 10px;
+    width: 50%;
+    display: inline-block;
+    box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
+}
+
+.CompanyList-Input {
+    width: 70%;
+    height: 2rem;
+    margin: 1rem;
+    border: 2px black solid;
+    border-radius: 10px;
+    text-align: center;
+    background-color: white;
+    
+}
+
+.CompanyList-Button {
+    background-color: lightgreen;
+    color: black;
+    font-weight: 600;
+    font-size: 16px;
+    width: 20%;
+    height: 40px;
+    border: 2px solid black;
+    border-radius: 10px;
+}
+
+.CompanyList-Button:hover {
+    cursor: pointer;
+}

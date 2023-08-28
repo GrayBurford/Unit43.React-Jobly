@@ -34,7 +34,20 @@ class JoblyApi {
   // Get details on a company by handle name
   static async getCompany(handle) {
     let res = await this.request(`companies/${handle}`);
+    console.log('RESPONSE FROM API.JS IS:', res);
     return res.company;
+  }
+
+  // Get list of all companies /w params
+  static async getCompanies(name) {
+    let res = await this.request(`companies/`, {name});
+    return res.companies;
+  }
+
+  // Get list of all jobs
+  static async getJobs (name) {
+    let res = await this.request(`jobs/`);
+    return res.jobs;
   }
 
 }
@@ -44,4 +57,4 @@ JoblyApi.token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZ" +
     "SI6InRlc3R1c2VyIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTU5ODE1OTI1OX0." +
     "FtrMwBQwe6Ue-glIFgz_Nf8XxRT2YecFCiSpYL0fCXc";
 
-    export default JoblyApi;
+export default JoblyApi;
