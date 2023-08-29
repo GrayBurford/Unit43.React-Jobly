@@ -1,0 +1,55 @@
+
+
+main {
+    background-color: aquamarine;
+    height : 100vh;
+}
+
+label {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.LoginForm {
+    background-color: lightskyblue;
+    width: 50%;
+    border: 2px black solid;
+    border-radius: 10px;
+    margin-left: 25%;
+    margin-right: 25%;
+    
+}
+
+.LoginForm-Input {
+    display: inline;
+    width: 100%;
+    padding: 14px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 2px solid darkgray;
+    border-radius: 10px;
+}
+
+.LoginForm-Input:hover {
+    border: 2px solid #04AA6D;
+}
+
+.LoginForm-Input:focus {
+    background-color: lightgreen;
+    
+}
+
+.LoginForm-Button {
+    background-color: #04AA6D;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    padding: 16px 32px;
+    text-decoration: none;
+    margin: 8px 4px;
+    cursor: pointer;
+}
+
+.LoginForm-Button:hover {
+    border: 2px solid green;
+}

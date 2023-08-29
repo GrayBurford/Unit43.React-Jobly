@@ -1,15 +1,17 @@
 import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import Home from './Home';
-import SignupForm from './SignupForm';
-import LoginForm from './LoginForm';
+
+import SignupForm from './UserFormComponents/SignupForm';
+import LoginForm from './UserFormComponents/LoginForm';
+import ProfileForm from './UserFormComponents/ProfileForm';
+
 import CompanyList from './CompanyComponents/CompanyList';
 import CompanyDetail from './CompanyComponents/CompanyDetail';
 import JobList from './JobComponents/JobList';
-import Profile from './Profile';
 
 
-function Routes () {
+function Routes ({ register, login, logout }) {
     
     
     return (    
@@ -19,11 +21,11 @@ function Routes () {
             </Route>
 
             <Route exact path="/signup">
-                <SignupForm />
+                <SignupForm register={register} />
             </Route> 
 
             <Route exact path="/login">
-                <LoginForm />
+                <LoginForm login={login} />
             </Route> 
 
             <Route exact path="/companies">
@@ -39,7 +41,7 @@ function Routes () {
             </Route> 
                        
             <Route exact path="/profile">
-                <Profile />
+                <ProfileForm />
             </Route>
 
             <Redirect to="/" />

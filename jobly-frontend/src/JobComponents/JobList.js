@@ -15,6 +15,11 @@ function JobList () {
         console.log('ALL JOBS:', allJobs);
     }
 
+    async function searchJob (title) {
+        const resp = await JoblyApi.getJobs(title);
+        setJobs(resp);
+    }
+
     useEffect(() => {
         getAllJobs();
     }, []);
@@ -22,7 +27,7 @@ function JobList () {
     return (        
         <div className="JobList">
             <div>
-                <JobSearchForm />
+                <JobSearchForm searchJob={searchJob} />
                 <h1>Job List</h1>
             </div>
 
