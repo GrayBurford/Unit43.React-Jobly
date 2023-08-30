@@ -38,6 +38,7 @@ function App() {
     getCurrUser();
   }, [token]);
 
+
   // Registers a new user
   async function register (formData) {
     try {
@@ -49,6 +50,7 @@ function App() {
       return { success : false, err };
     }
   }
+
 
   // Authenticates and logs in an existing user
   async function login (formData) {
@@ -62,6 +64,7 @@ function App() {
     }
   }
 
+
   // Logs out an existing user
   function logout () {
     setToken(null);
@@ -69,8 +72,10 @@ function App() {
     console.log("LOGGED OUT!")
   }
 
+
   if (!isLoaded) return <Loading />;
 
+  
   return (
     <div className="App">
       <BrowserRouter>

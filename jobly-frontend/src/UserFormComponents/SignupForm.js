@@ -53,7 +53,7 @@ function SignupForm ({ register }) {
                         <label htmlFor="password">Password: </label>
                         <input 
                             className="SignupForm-Input"
-                            type="text"
+                            type="password"
                             name="password"
                             id="password"
                             placeholder="Enter your password"

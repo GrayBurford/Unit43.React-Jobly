@@ -6,10 +6,7 @@ import './LoginForm.css';
 function LoginForm ({ login }) {
     const INITIAL_STATE = {
         username : "",
-        password : "",
-        firstName : "",
-        lastName : "",
-        email : ""
+        password : ""
     }
     const history = useHistory();
 
@@ -54,7 +51,7 @@ function LoginForm ({ login }) {
                         <label htmlFor="password">Password: </label>
                         <input 
                             className="LoginForm-Input"
-                            type="text"
+                            type="password"
                             name="password"
                             id="password"
                             placeholder="Enter your password"
