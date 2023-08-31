@@ -6,9 +6,6 @@ import CompanyList from './CompanyComponents/CompanyList';
 
 function Home () {
     const { currUser } = useContext(UserContextObject);
-    // console.log('CURRUSER IS:', currUser);
-    // console.log('USERNAME IS:', currUser.currUser.username);
-
 
     return (
         <React.Fragment>

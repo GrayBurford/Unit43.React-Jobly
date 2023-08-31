@@ -17,6 +17,8 @@ function App() {
   const [token, setToken] = useLocalStorage(TOKEN_STORAGE_ID);
   const [currUser, setCurrUser] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
+  console.log(`localstorage on App.js render:`, localStorage);
+
 
   // Load currUser from API (JoblyApi). Only runs once user gets verified token.
   useEffect(() => {
@@ -69,13 +71,14 @@ function App() {
   function logout () {
     setToken(null);
     setCurrUser(null);
+    console.log(`localstorage on logout function:`, localStorage);
     console.log("LOGGED OUT!")
   }
 
 
   if (!isLoaded) return <Loading />;
 
-  
+
   return (
     <div className="App">
       <BrowserRouter>

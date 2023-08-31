@@ -12,7 +12,7 @@ function JobList () {
     async function getAllJobs () {
         const allJobs = await JoblyApi.getJobs();
         setJobs(allJobs);
-        console.log('ALL JOBS:', allJobs);
+        // console.log('ALL JOBS:', allJobs);
     }
 
     async function searchJob (title) {
