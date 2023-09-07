@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 function useLocalStorage (key, value = null) {
   const initialValue = localStorage.getItem(key) || value;

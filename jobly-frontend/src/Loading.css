@@ -4,4 +4,8 @@
     font-size: 72px;
     font-weight: 700;
     margin: 10rem 25% 0;
+    border: 2px solid red;
+    border-radius: 10px;
+    padding: 5rem;
+    background-color: greenyellow;
 }
