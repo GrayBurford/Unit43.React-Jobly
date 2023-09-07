@@ -5,11 +5,13 @@ import CompanyCard from './CompanyCard';
 import './CompanyList.css';
 import CompanySearchForm from './CompanySearchForm';
 import UserContextObject from '../UserContext';
+import Alert from '../helpers/Alert';
 
 
 function CompanyList () {
     const [companies, setCompanies] = useState([])
     const { currUser } = useContext(UserContextObject);
+    const [formErrors, setFormErrors] = useState([]);
 
     async function getAllCompanies () {
         const allCompanies = await JoblyApi.getCompanies();
@@ -17,8 +19,13 @@ function CompanyList () {
     }
 
     async function getCompany (search) {
-        const resp = await JoblyApi.getCompanies(search);
-        setCompanies(resp);
+        try {
+            setFormErrors([]);
+            const resp = await JoblyApi.getCompanies(search);
+            setCompanies(resp);
+        } catch (err) {
+            setFormErrors(err);
+        }
     }
 
     useEffect(() => {
@@ -32,6 +39,10 @@ function CompanyList () {
                     <div className="CompanyList">
                         <div>
                             <CompanySearchForm searchCompany={getCompany} />
+                            {formErrors.length 
+                                ? <Alert type="danger" messages={formErrors} /> 
+                                : null
+                            }
                             <h3>Welcome Back, {currUser.firstName}!</h3>
                             <h1>Company List</h1>
                         </div>

@@ -4,10 +4,12 @@ import JoblyApi from '../API';
 import './JobList.css';
 import JobCard from './JobCard';
 import JobSearchForm from './JobSearchForm';
+import Alert from '../helpers/Alert';
 
 
 function JobList () {
     const [jobs, setJobs] = useState([]);
+    const [formErrors, setFormErrors] = useState([]);
 
     async function getAllJobs () {
         const allJobs = await JoblyApi.getJobs();
@@ -16,8 +18,14 @@ function JobList () {
     }
 
     async function searchJob (title) {
-        const resp = await JoblyApi.getJobs(title);
-        setJobs(resp);
+        try {
+            setFormErrors([]);
+            const resp = await JoblyApi.getJobs(title);
+            setJobs(resp);
+        } catch (err) {
+            setFormErrors(err);
+        }
+
     }
 
     useEffect(() => {
@@ -28,6 +36,10 @@ function JobList () {
         <div className="JobList">
             <div>
                 <JobSearchForm searchJob={searchJob} />
+                {formErrors.length 
+                    ? <Alert type="danger" messages={formErrors} /> 
+                    : null
+                }
                 <h1>Job List</h1>
             </div>
 
