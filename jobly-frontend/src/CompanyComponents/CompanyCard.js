@@ -41,7 +41,9 @@ function CompanyCard ({ description, handle, name, logoUrl, numEmployees }) {
                         {description}
                     </CardText>
                     <hr></hr>
-                    <Button className='CompanyCard-Button'>Go to Jobs</Button>
+                    <Link to={`/companies/${handle}`}>
+                        <Button className='CompanyCard-Button'>Go to Jobs</Button>
+                    </Link>
                 </CardBody>
             </Card>
         </div>

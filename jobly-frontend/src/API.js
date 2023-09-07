@@ -34,7 +34,6 @@ class JoblyApi {
   // Get details on a company by handle name
   static async getCompany(handle) {
     let res = await this.request(`companies/${handle}`);
-    console.log('RESPONSE FROM API.JS IS:', res);
     return res.company;
   }
 
@@ -72,6 +71,11 @@ class JoblyApi {
   static async editProfile (username, data) {
     let res = await this.request(`users/${username}`, data, "patch");
     return res.user;
+  }
+
+  // Allow user to apply for a job
+  static async applyToJob (username, jobId) {
+    await this.request(`users/${username}/${jobId}`, {}, "post")
   }
 
 

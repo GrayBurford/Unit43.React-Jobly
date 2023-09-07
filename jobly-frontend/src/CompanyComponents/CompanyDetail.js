@@ -28,9 +28,6 @@ function CompanyDetail () {
         getCompanyInfo();
     }, [handle]);
 
-    // console.log('Handle:', handle);
-    // console.log('Company:', company);
-    // console.log('JOBS ARE:', jobs);
 
     return (
         <div className="CompanyDetail">

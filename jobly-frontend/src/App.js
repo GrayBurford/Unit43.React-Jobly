@@ -17,6 +17,7 @@ function App() {
   const [token, setToken] = useLocalStorage(TOKEN_STORAGE_ID);
   const [currUser, setCurrUser] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [appliedApplicationIds, setAppliedApplicationIds] = useState(new Set([]));
   console.log(`localstorage on App.js render:`, localStorage);
 
 
@@ -51,7 +52,7 @@ function App() {
       console.error("Register failed!", err);
       return { success : false, err };
     }
-  }
+  };
 
 
   // Authenticates and logs in an existing user
@@ -64,7 +65,7 @@ function App() {
       console.error("Login Failed!", err);
       return { success : false, err };
     }
-  }
+  };
 
 
   // Logs out an existing user
@@ -73,6 +74,18 @@ function App() {
     setCurrUser(null);
     console.log(`localstorage on logout function:`, localStorage);
     console.log("LOGGED OUT!")
+  };
+
+
+  // Checks if user has applied for this jobId
+  function hasApplied (jobId) {
+    return appliedApplicationIds && appliedApplicationIds.has(jobId);
+  };
+
+  function applyToJob (jobId) {
+    if (hasApplied(jobId)) return;
+    JoblyApi.applyToJob(currUser.username, jobId);
+    setAppliedApplicationIds(new Set([...appliedApplicationIds, jobId]));
   }
 
 
@@ -83,7 +96,12 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <UserContextObject.Provider
-          value={{ currUser, setCurrUser }}
+          value={{ 
+            currUser, 
+            setCurrUser, 
+            appliedApplicationIds, 
+            setAppliedApplicationIds 
+          }}
         >
           <NavBar 
             logout={logout} 
