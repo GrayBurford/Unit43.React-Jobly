@@ -82,7 +82,8 @@ function App() {
     return appliedApplicationIds && appliedApplicationIds.has(jobId);
   };
 
-  function applyToJob (jobId) {
+  function apply (jobId) {
+    console.log(`APPLYING TO jobId:`, jobId)
     if (hasApplied(jobId)) return;
     JoblyApi.applyToJob(currUser.username, jobId);
     setAppliedApplicationIds(new Set([...appliedApplicationIds, jobId]));
@@ -100,7 +101,9 @@ function App() {
             currUser, 
             setCurrUser, 
             appliedApplicationIds, 
-            setAppliedApplicationIds 
+            setAppliedApplicationIds,
+            apply,
+            hasApplied 
           }}
         >
           <NavBar 

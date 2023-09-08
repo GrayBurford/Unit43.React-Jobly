@@ -1,9 +1,20 @@
 
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import './JobCard.css';
-import { Link } from 'react-router-dom';
+import UserContextObject from '../UserContext';
 
-function JobCard ({ title, salary, equity, handle, name }) {
+function JobCard ({ id, title, salary, equity, handle, name }) {
+    const { apply, hasApplied, currUser } = useContext(UserContextObject);
+    const [applied, setApplied] = useState(null);
+
+    const userApps = currUser.applications;
+
+    function handleApply () {
+        if(hasApplied(id)) return;
+        apply(id);
+        setApplied(true);
+    }
+
     return (
         <div className='JobCard'>
             <div>
@@ -13,7 +24,20 @@ function JobCard ({ title, salary, equity, handle, name }) {
                 <div>Salary: {salary}</div>
                 <div>Equity: {equity || 0}</div>
                 <hr></hr>
-                <Link to={'/'}><button className='JobCard-Button'>Apply!</button></Link>
+                <button
+                    style={{
+                        backgroundColor : applied || userApps.includes(id) 
+                        ? 'lightpink' 
+                        : 'lightgreen'
+                    }} 
+                    onClick={handleApply} 
+                    className='JobCard-Button'>
+                    { 
+                        applied || userApps.includes(id) 
+                        ? "Already Applied!" 
+                        : "Apply Now!" 
+                    }                    
+                </button>
             </div>            
         </div>
         

@@ -5,6 +5,7 @@ import { Card, CardBody, CardText, CardTitle, CardImg } from 'reactstrap';
 import { useParams } from 'react-router-dom';
 import JoblyApi from '../API';
 import logos from '../helpers/companyLogos';
+import JobCard from '../JobComponents/JobCard';
 
 
 function CompanyDetail () {
@@ -53,14 +54,40 @@ function CompanyDetail () {
 
             <Card>
                 <div className="CompanyDetail-JobCard">
-                    {jobs.map(j => (
+                    <h3>Available Jobs With Us:</h3>
+                    {/* {jobs.map(j => (
                         <div className='CompanyDetail-Job'> 
                             <div>{`Job Title: ${j.title}`}</div>
                             <div>{`Job Salary: ${j.salary}`}</div>
                             <div>{`Job Equity: ${j.equity}`}</div>
-                            <button className='CompanyDetail-Button'>Apply Now</button>
+                            <button 
+                                className='CompanyDetail-Button'
+                                style={{
+                                    backgroundColor : applied || userApps.includes(j.id) 
+                                    ? 'lightpink' 
+                                    : 'lightgreen'
+                                }}
+                                // onClick={handleApply}
+                            >
+                                { 
+                                    applied || userApps.includes(j.id) 
+                                    ? "Already Applied!" 
+                                    : "Apply Now!" 
+                                }
+                            </button>
                         </div>
-                    ))}
+                    ))} */}
+                    <div>
+                        {jobs.map(job => (
+                            <JobCard 
+                                key={job.id}
+                                id={job.id}
+                                title={job.title}
+                                salary={job.salary}
+                                equity={job.equity}
+                            />
+                        ))}
+                    </div>
                 </div>
 
             </Card>
